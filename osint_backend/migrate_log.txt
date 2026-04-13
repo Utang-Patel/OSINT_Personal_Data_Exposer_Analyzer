@@ -1,0 +1,27 @@
+﻿.\venv\Scripts\python.e
+xe : 2026-03-02 
+00:26:41,920 [INFO] 
+checker: Checker app 
+initialised and ready.
+At line:1 char:1
++ .\venv\Scripts\python
+.exe manage.py migrate 
+2>&1 | Out-File 
+-FilePath ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (2026-03-02 00   
+ :2...ised and read    
+y.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  No migrations to apply.

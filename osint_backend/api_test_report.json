@@ -1,0 +1,193 @@
+[
+  {
+    "endpoint": "/status/",
+    "method": "GET",
+    "condition": "Valid request",
+    "status": 200,
+    "expected_status": 200,
+    "passed": true,
+    "response": "{'status': 'ok'}"
+  },
+  {
+    "endpoint": "/check/password/",
+    "method": "POST",
+    "condition": "Valid input",
+    "status": 200,
+    "expected_status": 200,
+    "passed": true,
+    "response": "{'sha1_prefix': '49EFE', 'pwned_count': 293751}"
+  },
+  {
+    "endpoint": "/check/password/",
+    "method": "POST",
+    "condition": "Missing parameter",
+    "status": 400,
+    "expected_status": 400,
+    "passed": true,
+    "response": "{'errors': {'password': ['This field is required.']}}"
+  },
+  {
+    "endpoint": "/auth/register/",
+    "method": "POST",
+    "condition": "Valid input",
+    "status": 201,
+    "expected_status": 201,
+    "passed": true,
+    "response": "{'message': 'Verification code sent to api_comprehensive_test@example.com. Check your inbox.', 'emai"
+  },
+  {
+    "endpoint": "/auth/register/",
+    "method": "POST",
+    "condition": "Invalid email & short password",
+    "status": 400,
+    "expected_status": 400,
+    "passed": true,
+    "response": "{'errors': {'email': 'A valid email address is required.', 'password': 'Password must be at least 8 "
+  },
+  {
+    "endpoint": "/auth/register/",
+    "method": "POST",
+    "condition": "Missing all parameters",
+    "status": 400,
+    "expected_status": 400,
+    "passed": true,
+    "response": "{'errors': {'email': 'A valid email address is required.', 'first_name': 'First name is required.', "
+  },
+  {
+    "endpoint": "/auth/verify-otp/",
+    "method": "POST",
+    "condition": "Invalid OTP",
+    "status": 401,
+    "expected_status": [
+      400,
+      401
+    ],
+    "passed": true,
+    "response": "{'error': 'Invalid OTP. Please check the code and try again.'}"
+  },
+  {
+    "endpoint": "/auth/login/",
+    "method": "POST",
+    "condition": "Valid existing login",
+    "status": 401,
+    "expected_status": [
+      200,
+      401,
+      403
+    ],
+    "passed": true,
+    "response": "{'error': 'Invalid email or password.'}"
+  },
+  {
+    "endpoint": "/auth/login/",
+    "method": "POST",
+    "condition": "Invalid password",
+    "status": 401,
+    "expected_status": 401,
+    "passed": true,
+    "response": "{'error': 'Invalid email or password.'}"
+  },
+  {
+    "endpoint": "/monitoring/",
+    "method": "GET",
+    "condition": "Missing Auth Header",
+    "status": 401,
+    "expected_status": 401,
+    "passed": true,
+    "response": "{'error': 'Authentication required.'}"
+  },
+  {
+    "endpoint": "/monitoring/",
+    "method": "POST",
+    "condition": "Missing Auth Header",
+    "status": 400,
+    "expected_status": 401,
+    "passed": false,
+    "response": "{'errors': {'user_id': ['This field is required.'], 'input_type': ['This field is required.']}}"
+  },
+  {
+    "endpoint": "/reports/",
+    "method": "GET",
+    "condition": "Missing Auth Header",
+    "status": 400,
+    "expected_status": 401,
+    "passed": false,
+    "response": "{'error': 'user_id query param is required.'}"
+  },
+  {
+    "endpoint": "/alerts/",
+    "method": "GET",
+    "condition": "Missing Auth Header",
+    "status": 400,
+    "expected_status": 401,
+    "passed": false,
+    "response": "{'error': 'user_id query param is required.'}"
+  },
+  {
+    "endpoint": "/osint/username/",
+    "method": "POST",
+    "condition": "Missing Auth Header",
+    "status": 200,
+    "expected_status": 401,
+    "passed": false,
+    "response": "{'query': 'testuser', 'platforms': ['https://www.pinterest.com/testuser/', 'https://github.com/testu"
+  },
+  {
+    "endpoint": "/osint/phone/",
+    "method": "POST",
+    "condition": "Missing Auth Header",
+    "status": 500,
+    "expected_status": 401,
+    "passed": false,
+    "response": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"content-type\" content=\"text/html; charse"
+  },
+  {
+    "endpoint": "/osint/wmn/",
+    "method": "POST",
+    "condition": "Missing Auth Header",
+    "status": 0,
+    "expected_status": 401,
+    "passed": false,
+    "response": "timed out"
+  },
+  {
+    "endpoint": "/osint/holehe/",
+    "method": "POST",
+    "condition": "Missing Auth Header",
+    "status": 0,
+    "expected_status": 401,
+    "passed": false,
+    "response": "timed out"
+  },
+  {
+    "endpoint": "/feedback/",
+    "method": "POST",
+    "condition": "Valid input",
+    "status": 201,
+    "expected_status": 201,
+    "passed": true,
+    "response": "{'message': 'Feedback sent and saved successfully.'}"
+  },
+  {
+    "endpoint": "/feedback/",
+    "method": "POST",
+    "condition": "Missing parameters",
+    "status": 400,
+    "expected_status": 400,
+    "passed": true,
+    "response": "{'error': 'A valid email address is required.'}"
+  },
+  {
+    "endpoint": "/feedback/",
+    "method": "POST",
+    "condition": "Large string parameter (100KB)",
+    "status": 201,
+    "expected_status": [
+      201,
+      400,
+      413
+    ],
+    "passed": true,
+    "response": "{'message': 'Feedback sent and saved successfully.'}"
+  }
+]
